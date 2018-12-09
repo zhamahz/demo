@@ -1,6 +1,5 @@
 package kg.demo.pizza.controllers;
 
-import kg.demo.pizza.configuration.UserRepositoryCommandLineRunner;
 import kg.demo.pizza.repository.PizzasRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,25 +11,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
-    private static final Logger log = LoggerFactory.getLogger(UserRepositoryCommandLineRunner.class);
+	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
 
-    @Autowired
-    private PizzasRepository pizzasRepository;
+	@Autowired
+	private PizzasRepository pizzasRepository;
 
-    @RequestMapping(value={"/login"}, method = RequestMethod.GET)
-    public ModelAndView login(){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("login");
-        return modelAndView;   }
+	@RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+	public ModelAndView login() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("login");
+		return modelAndView;
+	}
 
-    @RequestMapping(value={"/"}, method = RequestMethod.GET)
-    public ModelAndView welcome() {
-        log.info("Called Welcome method");
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("pizzas", pizzasRepository.findAll());
-        modelAndView.addObject("titles","This is title");
-        modelAndView.setViewName("welcome");
-        return modelAndView;
-    }
+	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
+	public ModelAndView welcome() {
+		log.info("Called Welcome method");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("pizzas", pizzasRepository.findAll());
+		modelAndView.addObject("titles", "This is title");
+		modelAndView.setViewName("welcome");
+		return modelAndView;
+	}
 }
 

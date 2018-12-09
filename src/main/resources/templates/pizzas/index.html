@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel='stylesheet' th:href='@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}'>
-
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-<h1> Пиццы </h1>
-<p>
-    <a th:href="@{/pizzas/create}" class="btn btn-success btn-xs">Добавить</a>
-</p>
 <div class="container">
-    <div class="rows">
-        <table class="table">
-            <tr>
-                <td>Name</td>
-                <td>Price</td>
-                <td></td>
-            </tr>
-            <tr th:each="pizza : ${pizzas}">
-                <td th:text="${pizza.name}"></td>
-                <td th:text="${pizza.price}"></td>
-                <td>
-                    <a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}" class="btn btn-success btn-xs">Редактировать</a>
-                    <a th:href="@{/pizzas/delete/{id}(id=${pizza.id})}" class="btn btn-danger btn-xs delete">Удалить</a>
-                </td>
-
-            </tr>
-        </table>
-    </div>
+	<h1>Пиццы</h1>
+	<p>
+		<a th:href="@{/pizzas/create}" class="btn btn-success">Добавить</a>
+	</p>
+	<div class="rows">
+		<table class="table">
+			<thead>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+				<th></th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="pizza : ${pizzas}">
+				<td th:text="${pizza.name}"></td>
+				<td th:text="${pizza.price}"></td>
+				<td>
+					<a th:href="@{/pizzas/edit/{id}(id=${pizza.id})}" class="btn btn-success btn-xs">Редактировать</a>
+					<a th:href="@{/pizzas/delete/{id}(id=${pizza.id})}" class="btn btn-danger btn-xs delete">Удалить</a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 </div>
 
-<script th:src="@{/webjars/jquery/1.9.1/jquery.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
-    (function(){
-        var delBtns = document.getElementsByClassName("delete");
-        for (var i = 0; i < delBtns.length; i++) {
-            delBtns[i].addEventListener("click", function(event){
-                if(!confirm("Вы хотите удалить?")){
-                    event.preventDefault();
-                    return;
-                }
-            })
-        }
-    })()
+	(function () {
+		var delBtns = document.getElementsByClassName("delete");
+		for (var i = 0; i < delBtns.length; i++) {
+			delBtns[i].addEventListener("click", function (event) {
+				if (!confirm("Вы хотите удалить?")) {
+					event.preventDefault();
+					return;
+				}
+			})
+		}
+	})()
 </script>
 </body>
 </html>
